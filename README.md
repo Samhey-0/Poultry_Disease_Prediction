@@ -28,12 +28,13 @@
 ![Landing Page](screenshots/Home_page.png)
 
 ### Login Page
-[Login_Page](screenshots/Login.png)
+[Login Page](screenshots/Login.png)
 
 ### Signup
 [Signup](screenshots/Signup.png)
+
 ### OTP Send
-[OTP_sending](screenshots/OTP.png)
+[OTP Send](screenshots/OTP.png)
 
 ### Disease Prediction
 ![Disease Prediction](screenshots/Screenshot2026-02-27103802.png)
