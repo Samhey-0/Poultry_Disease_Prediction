@@ -391,14 +391,13 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 ## 👤 Author
 
 **Saim Bakhtiar**
-- Final Year Project - University
-- GitHub: [your-github-username]
+- Final Year Project 
+- GitHub: (https://github.com/Samhey-0)
 
 ---
 
 ## 🙏 Acknowledgments
 
-- University supervisors and faculty
 - Open-source community
 - Contributors and testers
 
