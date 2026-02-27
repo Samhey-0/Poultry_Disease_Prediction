@@ -1,215 +1,331 @@
-# Quick Setup Guide
+# PoultryAI Setup Guide
 
-This guide will help you set up the Poultry Disease Prediction System on your local machine in under 10 minutes.
+This guide provides detailed instructions for setting up the PoultryAI project on your local machine.
 
-## Prerequisites Checklist
+## Table of Contents
 
-Before you begin, ensure you have:
-- [ ] Python 3.9+ installed (`python --version`)
-- [ ] Node.js 16+ installed (`node --version`)
-- [ ] Git installed (`git --version`)
-- [ ] Gmail account (for OTP emails) or any SMTP server
+1. [Prerequisites](#prerequisites)
+2. [Project Structure](#project-structure)
+3. [Backend Setup](#backend-setup)
+4. [Frontend Setup](#frontend-setup)
+5. [Database Setup](#database-setup)
+6. [Environment Configuration](#environment-configuration)
+7. [Running the Application](#running-the-application)
+8. [Testing](#testing)
+9. [Deployment](#deployment)
+10. [Troubleshooting](#troubleshooting)
 
-## Step-by-Step Setup
+## Prerequisites
 
-### 1. Clone the Repository
+Before starting, ensure you have the following installed on your system:
 
-```bash
-git clone https://github.com/AbdulHaseeb598/poultry-disease-prediction-full-stack-.git
-cd poultry-disease-prediction-full-stack-
+### Required Software
+
+- **Python 3.10+**: Download from [python.org](https://python.org)
+- **Node.js 18+**: Download from [nodejs.org](https://nodejs.org)
+- **PostgreSQL 14+**: Download from [postgresql.org](https://postgresql.org)
+- **Git**: Download from [git-scm.com](https://git-scm.com)
+
+### Optional but Recommended
+
+- **Virtual Environment**: `pip install virtualenv`
+- **GitHub CLI**: For repository management
+- **Docker**: For containerized deployment
+
+### System Requirements
+
+- **RAM**: Minimum 8GB, Recommended 16GB
+- **Storage**: 5GB free space
+- **OS**: Windows 10+, macOS 10.15+, Ubuntu 18.04+
+
+## Project Structure
+
+```
+PoultryAI/
+├── backend/                 # Django REST API
+│   ├── apps/               # Django applications
+│   ├── manage.py           # Django management script
+│   ├── requirements.txt    # Python dependencies
+│   └── settings.py         # Django settings
+├── frontend/               # React application
+│   ├── src/                # Source code
+│   ├── package.json        # Node dependencies
+│   └── vite.config.js      # Vite configuration
+├── model/                  # ML model directory
+├── screenshots/            # Application screenshots
+├── LICENSE                 # MIT License
+├── README.md              # Project documentation
+└── SETUP_GUIDE.md         # This file
 ```
 
-### 2. Backend Setup (5 minutes)
+## Backend Setup
+
+### 1. Navigate to Backend Directory
 
 ```bash
-# Navigate to backend
 cd backend
+```
 
-# Create and activate virtual environment
+### 2. Create Virtual Environment
+
+```bash
+# Windows
 python -m venv venv
-
-# Windows PowerShell
-.\venv\Scripts\Activate.ps1
-
-# Windows CMD
-venv\Scripts\activate.bat
+venv\Scripts\activate
 
 # macOS/Linux
+python -m venv venv
 source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Install PyTorch (if not in requirements.txt)
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install timm
 ```
 
-### 3. Configure Backend Environment
+### 3. Install Dependencies
 
-Create `backend/.env` file:
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Environment Configuration
+
+Create a `.env` file in the `backend` directory:
 
 ```env
-SECRET_KEY=django-insecure-your-secret-key-here-change-in-production
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
+# Django Settings
+DJANGO_SECRET_KEY=your-super-secret-key-here-change-this-in-production
+DJANGO_DEBUG=True
+DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
 
-# Email (REQUIRED for signup OTP)
+# Database
+DATABASE_URL=postgres://username:password@localhost:5432/poultryai
+
+# Email (optional)
+EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER=your-email@gmail.com
-EMAIL_HOST_PASSWORD=your-gmail-app-password
-DEFAULT_FROM_EMAIL=PoultryAI <your-email@gmail.com>
+EMAIL_HOST_PASSWORD=your-app-password
 
-# Optional
-GOOGLE_MAPS_API_KEY=your-key-here
+# API Keys
+GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+
+# Model Directory
+MODEL_DIR=../model
 ```
 
-**Get Gmail App Password:**
-1. Go to https://myaccount.google.com/apppasswords
-2. Enable 2-Factor Authentication if not already enabled
-3. Generate an App Password for "Mail"
-4. Use the 16-character password in `.env`
+### 5. Database Setup
 
-### 4. Initialize Database
+#### Using PostgreSQL
+
+1. Create database:
+```sql
+CREATE DATABASE poultryai;
+CREATE USER poultryai_user WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE poultryai TO poultryai_user;
+```
+
+2. Update `DATABASE_URL` in `.env`
+
+#### Using SQLite (Development)
+
+No additional setup required. SQLite will be used automatically.
+
+### 6. Run Migrations
 
 ```bash
-# Run migrations
 python manage.py makemigrations
 python manage.py migrate
-
-# Create admin user
-python manage.py createsuperuser
-# Follow prompts: enter email, name, password
 ```
 
-### 5. Start Backend Server
+### 7. Create Superuser
 
 ```bash
-# Make sure venv is activated!
+python manage.py createsuperuser
+```
+
+Follow the prompts to create an admin user.
+
+### 8. Load Initial Data (Optional)
+
+```bash
+# Load diseases
+python manage.py seed_diseases
+
+# Load medicines
+python manage.py seed_medicines
+```
+
+## Frontend Setup
+
+### 1. Navigate to Frontend Directory
+
+```bash
+cd frontend
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Environment Configuration
+
+Create a `.env` file in the `frontend` directory:
+
+```env
+VITE_API_URL=http://localhost:8000/api
+VITE_GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+```
+
+## Running the Application
+
+### Development Mode
+
+1. **Start Backend**:
+```bash
+cd backend
+source venv/bin/activate  # or venv\Scripts\activate on Windows
 python manage.py runserver
 ```
 
-**✅ Success Check:** You should see:
-```
-Model loaded: 0 missing keys, 0 unexpected keys
-Loaded model from .../model/efficientnet_b0_best.pth on cpu
-Starting development server at http://127.0.0.1:8000/
-```
-
-### 6. Frontend Setup (3 minutes)
-
-Open a NEW terminal (keep backend running):
-
+2. **Start Frontend** (in a new terminal):
 ```bash
-# Navigate to frontend
 cd frontend
-
-# Install dependencies
-npm install
-
-# Create .env file
-# Create frontend/.env with:
-```
-
-`frontend/.env`:
-```env
-VITE_API_BASE=http://localhost:8000/api
-VITE_GOOGLE_MAPS_API_KEY=your-key-here
-```
-
-### 7. Start Frontend Server
-
-```bash
 npm run dev
 ```
 
-**✅ Success Check:** You should see:
-```
-VITE v5.4.21  ready in 387 ms
-➜  Local:   http://localhost:5173/
-```
+3. **Access Application**:
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:8000
+   - Admin Panel: http://localhost:8000/admin
 
-### 8. Access the Application
+### Production Mode
 
-1. Open browser: `http://localhost:5173/`
-2. Click "Sign Up" to create an account
-3. Verify with OTP sent to your email
-4. Login and start using the app!
-
-**Admin Access:**
-- Login with superuser credentials
-- Navigate to `/admin` for the admin dashboard
-
-## Common Issues & Fixes
-
-### Issue: "Module 'torch' not found"
+1. **Build Frontend**:
 ```bash
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-pip install timm
+cd frontend
+npm run build
 ```
 
-### Issue: "Model returning 25% confidence"
+2. **Collect Static Files**:
 ```bash
-# Make sure venv is activated before starting Django:
 cd backend
-.\venv\Scripts\Activate.ps1  # Windows
-python manage.py runserver
+python manage.py collectstatic --noinput
 ```
 
-### Issue: "Email not sending"
-- Check Gmail App Password is correct
-- Ensure 2FA is enabled on Google account
-- Try from a different network if corporate firewall blocks SMTP
-
-### Issue: "Port already in use"
+3. **Run Production Server**:
 ```bash
-# Windows: Find and kill process
-netstat -ano | findstr :8000
-taskkill /F /PID <process-id>
-
-# Or change port:
-python manage.py runserver 8001
+python manage.py runserver --settings=backend.settings.production
 ```
 
-### Issue: "CORS error in browser"
-- Verify `VITE_API_BASE` in frontend/.env is correct
-- Ensure backend is running at the specified URL
+## Testing
 
-## Verification Checklist
+### Backend Tests
 
-After setup, verify:
-- [ ] Backend running on http://127.0.0.1:8000/
-- [ ] Frontend running on http://localhost:5173/
-- [ ] Can create account with OTP
-- [ ] Can login successfully
-- [ ] Can upload image and get prediction
-- [ ] Admin can access /admin dashboard
-- [ ] Model loads without errors (check backend console)
+```bash
+cd backend
+python manage.py test
+```
+
+### Frontend Tests
+
+```bash
+cd frontend
+npm run test
+```
+
+### End-to-End Testing
+
+```bash
+# Install Playwright
+npm install -D @playwright/test
+
+# Run E2E tests
+npx playwright test
+```
+
+## Deployment
+
+### Using Docker
+
+1. **Build Images**:
+```bash
+docker-compose build
+```
+
+2. **Run Containers**:
+```bash
+docker-compose up -d
+```
+
+### Manual Deployment
+
+1. **Configure Production Settings**:
+   - Set `DJANGO_DEBUG=False`
+   - Configure production database
+   - Set up static file serving
+   - Configure HTTPS
+
+2. **Use Production Server**:
+   - Gunicorn for Django
+   - Nginx for static files and reverse proxy
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Port Already in Use**:
+   
+```bash
+   # Find process using port
+   lsof -i :8000
+   # Kill process
+   kill -9 <PID>
+   
+```
+
+2. **Database Connection Error**:
+   - Verify PostgreSQL is running
+   - Check database credentials
+   - Ensure database exists
+
+3. **Module Not Found**:
+   
+```bash
+   # Reinstall dependencies
+   pip install -r requirements.txt --force-reinstall
+   
+```
+
+4. **CORS Errors**:
+   - Add frontend URL to `CORS_ALLOWED_ORIGINS`
+   - Restart Django server
+
+5. **Build Errors**:
+   
+```bash
+   # Clear npm cache
+   npm cache clean --force
+   # Reinstall
+   rm -rf node_modules package-lock.json
+   npm install
+   
+```
+
+### Getting Help
+
+- Check the [README.md](README.md) for detailed documentation
+- Review Django and React documentation
+- Check GitHub Issues for known problems
 
 ## Next Steps
 
-1. **Create admin account**: Use superuser credentials
-2. **Test OTP**: Sign up a test user
-3. **Upload test image**: Use sample poultry image
-4. **Explore admin dashboard**: Manage users, diseases, medicines
-5. **Toggle maintenance mode**: Test in System admin tab
+1. Explore the admin panel
+2. Upload test images
+3. Configure email settings
+4. Set up monitoring and logging
+5. Implement backup strategies
 
-## Need Help?
+---
 
-- Check the main [README.md](README.md) for detailed documentation
-- Review console logs for specific errors
-- Ensure all prerequisites are met
-- Contact: haseebkhansherani787@gmail.com
-
-## Production Deployment
-
-When ready for production:
-1. Set `DEBUG=False` in backend/.env
-2. Update `ALLOWED_HOSTS` with your domain
-3. Change `SECRET_KEY` to a secure random string
-4. Use PostgreSQL instead of SQLite
-5. Set up proper static file serving
-6. Configure HTTPS/SSL
-7. Update CORS settings for production domain
+*For additional support, please refer to the main [README.md](README.md) or open an issue on GitHub.*

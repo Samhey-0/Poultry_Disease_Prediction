@@ -379,7 +379,7 @@ export default function Inventory() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Price (optional)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Price *</label>
                   <input
                     type="number"
                     min="0"
@@ -391,7 +391,8 @@ export default function Inventory() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Expiry Date (optional)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Expiry Date *
+                  </label>
                   <input
                     type="date"
                     value={formData.expiry_date}

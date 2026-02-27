@@ -19,6 +19,13 @@ export default function Admin() {
     return null
   }
 
+  // // Redirect non-admin users
+  // if (!user || !user.is_staff) {
+  //   navigate('/dashboard')
+  //   return null
+  // }
+
+
   const tabs = [
     { id: 'users', label: 'Users', icon: '👥' },
     { id: 'vets', label: 'Vets & Clinics', icon: '🏥' },
