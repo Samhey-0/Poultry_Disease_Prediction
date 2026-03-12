@@ -5,22 +5,22 @@
 ![React](https://img.shields.io/badge/React-18.2+-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## 📋 Project Overview
+## Project Overview
 
 **PoultryAI** is a comprehensive Full-Stack poultry disease prediction system developed as a Final Year Project (FYP). The application leverages machine learning to identify diseases in poultry from uploaded images and provides treatment recommendations including medicines, dosages, and administration guidelines.
 
 ### Key Features
 
-- 🔬 **AI-Powered Disease Detection** - Upload poultry images and get instant disease predictions
-- 💊 **Medicine Recommendations** - Get detailed treatment plans with dosages
-- 🗺️ **Vet Locator** - Find nearest veterinary services using Google Maps integration
-- 📊 **Admin Dashboard** - Comprehensive management for diseases, medicines, inventory, and users
-- 📈 **Analytics & Reports** - Track disease trends and generate PDF reports
-- 📱 **Responsive Design** - Works seamlessly on desktop and mobile devices
+-  **AI-Powered Disease Detection** - Upload poultry images and get instant disease predictions
+-  **Medicine Recommendations** - Get detailed treatment plans with dosages
+-  **Vet Locator** - Find nearest veterinary services using Google Maps integration
+-  **Admin Dashboard** - Comprehensive management for diseases, medicines, inventory, and users
+-  **Analytics & Reports** - Track disease trends and generate PDF reports
+-  **Responsive Design** - Works seamlessly on desktop and mobile devices
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
 > **Note**: Replace these placeholder images with actual screenshots of your application.
 
@@ -51,7 +51,7 @@
 
 ---
 
-## 🏗️ Technology Stack
+## Technology Stack
 
 ### Backend
 | Technology | Purpose |
@@ -75,7 +75,7 @@
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 PoultryAI/
@@ -263,7 +263,7 @@ The frontend will be available at `http://localhost:5173`
 
 ---
 
-## 🔧 Running with Docker (Optional)
+## Running with Docker (Optional)
 
 ### Using Docker Compose
 
@@ -278,7 +278,7 @@ docker-compose logs -f
 
 ---
 
-## 📱 Application Usage
+## Application Usage
 
 ### For Users
 
@@ -297,7 +297,7 @@ docker-compose logs -f
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/register/` - User registration
@@ -336,7 +336,7 @@ For full API documentation, visit `/api/schema/` when the server is running.
 
 ---
 
-## 🤖 Machine Learning Model
+## Machine Learning Model
 
 This project uses a PyTorch-based deep learning model for poultry disease classification. The model is located in the `model/` directory.
 
@@ -356,7 +356,7 @@ For detailed model integration instructions, see [model/README.md](model/README.
 
 ---
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -377,7 +377,7 @@ For detailed model integration instructions, see [model/README.md](model/README.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -401,7 +401,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
 ---
 
-## 👤 Author
+## Author
 
 **Saim Bakhtiar**
 - Final Year Project 
@@ -409,14 +409,14 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Open-source community
 - Contributors and testers
 
 ---
 
-## 📞 Support
+## Support
 
 For issues and feature requests, please open an issue on GitHub.
 
