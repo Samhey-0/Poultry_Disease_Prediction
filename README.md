@@ -26,28 +26,28 @@
 > **Note**: Replace these placeholder images with actual screenshots of your application.
 
 ### Landing Page
-![Landing Page](screenshots/Home_page.png)
+![LandingPage](screenshots/Home_page.png)
 
 ### Login Page
-[Login Page](screenshots/Login.png)
+[LoginPage](screenshots/Login.png)
 
 ### Signup
 [Signup](screenshots/Signup.png)
 
 ### OTP Send
-[OTP Send](screenshots/OTP.png)
+[OTPSend](screenshots/OTP.png)
 
 ### Disease Prediction
 ![Disease Prediction](screenshots/Screenshot2026-02-27103802.png)
 
 ### Admin Dashboard
-![Admin Dashboard](screenshots/Screenshot2026-02-27103722.png)
+![AdminDashboard](screenshots/Screenshot2026-02-27103722.png)
 
 ### Results Page
 ![Results](screenshots/Disease_Analysis.png)
 
 ### Nearby Vet hospital
-[Nearby hospitals](screenshots/Nearby_vet_Map.png)
+[Nearbyhospitals](screenshots/Nearby_vet_Map.png)
 
 
 ---
