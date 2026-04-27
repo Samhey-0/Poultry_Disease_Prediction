@@ -1,4 +1,4 @@
-![FutureEnhancement](screenshots/AI Powered poultry disease Detection.png)
+![FutureEnhancement](screenshots/AI_Powered_poultry_disease_Detection.png)
 # PoultryAI - Poultry Disease Prediction System
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
